@@ -3,7 +3,8 @@ resource "aws_instance" "example" {
   ami           = "ami-0a25a306450a2cba3"
   instance_type = "t2.nano"
   key_name      = "roche-key"
-  tags_all = {
+  # changing tags_all to tags
+  tags = {
     "Name" = "anjali-vm-1"
   }
 }
@@ -11,4 +12,6 @@ resource "aws_instance" "example" {
 resource "local_file" "anjali-data" {
       content  = aws_instance.example.public_ip
       filename = "${path.module}/myip.txt"
+      # Making manual dependency
+      depends_on = [ aws_instance.example ]
 }
