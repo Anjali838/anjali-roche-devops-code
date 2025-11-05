@@ -10,8 +10,8 @@ resource "aws_instance" "example" {
 }
 
 resource "local_file" "anjali-data" {
-      content  = aws_instance.example.public_ip
-      filename = "${path.module}/myip.txt"
-      # Making manual dependency
-      depends_on = [ aws_instance.example ]
+  content  = aws_instance.example.public_ip
+  filename = "${path.module}/myip.txt"
+  # Making manual dependency
+  depends_on = [aws_instance.example]
 }
