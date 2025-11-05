@@ -8,3 +8,5 @@ output "my-ec2-publicIP" {
 output "my-ec2ID" {
   value = aws_instance.example.id
 }
+
+

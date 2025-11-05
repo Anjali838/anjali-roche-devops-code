@@ -3,7 +3,7 @@ resource "aws_instance" "example" {
   # ami = "ami-0a25a306450a2cba3"
   ami = var.anjali-ami-id
   instance_type = var.vm-size
-  key_name      = var.ec2-key-name
+  key_name = aws_key_pair.example.key_name
   # changing tags_all to tags
   tags = {
     "Name" = var.vm-name
@@ -16,3 +16,4 @@ resource "local_file" "anjali-data" {
   # Making manual dependency
   depends_on = [aws_instance.example]
 }
+
