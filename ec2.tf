@@ -8,6 +8,22 @@ resource "aws_instance" "example" {
   tags = {
     "Name" = var.vm-name
   }
+
+  # Provisioner
+  provisioner "remote-exec" {
+    inline = [ 
+      "sudo dnf install git httpd -y",
+      "mkdir -p hello/terraform"
+     ]
+  }
+  connection {
+    type = "ssh"
+    user = "ec2-user"
+    host = self.public_ip
+    timeout = "5m"
+    # Content of private key data
+    private_key = tls_private_key.example.private_key_pem
+  }
 }
 
 resource "local_file" "anjali-data" {
@@ -16,4 +32,5 @@ resource "local_file" "anjali-data" {
   # Making manual dependency
   depends_on = [aws_instance.example]
 }
+
 
