@@ -20,7 +20,7 @@ resource "aws_instance" "example" {
     type = "ssh"
     user = "ec2-user"
     host = self.public_ip
-    timeout = "5m"
+    timeout = "3m"
     # Content of private key data
     private_key = tls_private_key.example.private_key_pem
   }

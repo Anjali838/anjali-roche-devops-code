@@ -4,7 +4,7 @@ name: Anjali terraform workflow
 # when there is a push happen in main branch pipeline gonna trigger
 on: 
   push:
-    branches: [ "dryrun-aws" ]  
+    branches: [ "main" ]  
     paths-ignore:
       - "README.md"
       - "terraform.tfstate"
@@ -14,11 +14,11 @@ jobs:
   test-job:
     runs-on: ubuntu-latest
     steps: # what exactly you want to run in ubuntu machine
-# calling first github action to clone my dryrun-aws data to runner machine
+# calling first github action to clone my main data to runner machine
     - name: taking code from my repo
       uses: actions/checkout@v5
       with:
-        ref: dryrun-aws
+        ref: main
 
 # terraform installing
     - name: installing terraform
