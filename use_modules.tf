@@ -21,3 +21,18 @@ provider "aws" {
   # Region location info
   region = "ap-southeast-2"
 }
+
+# calling module 
+
+module "my-anjali-module-ec2" {
+  source = "./modules/ec2"
+  anjali-ami-id = "ami-0a25a306450a2cba3"
+  vm-name = "anjali-vmby-module"
+  vm-size = "t2.nano"
+  ec2-key-name = "anjali-keyby-mode"
+  private-key-algo = "RSA"
+  key-size = 4096
+  my-vpc-id = "vpc-02d56e9aa1ce2f114"
+  my-sec-group-name = "anjali-bymode-sec"
+  novm = 2
+}
