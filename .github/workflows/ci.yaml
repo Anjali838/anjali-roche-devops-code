@@ -4,7 +4,7 @@ name: Anjali terraform workflow
 # when there is a push happen in main branch pipeline gonna trigger
 on: 
   push:
-    branches: [ "main1" ]  
+    branches: [ "main" ]  
     paths-ignore:
       - "README.md"
       - "terraform.tfstate"
@@ -52,6 +52,13 @@ jobs:
         terraform plan
         sleep 2
         terraform apply --auto-approve
+        ls modules/ec2
+  #creating artifact and uploading ansible inventory file
+    - name: uploading ansible inventory to github artifacts
+      uses: action/upload-artifact@v4
+      with:
+        name: anjali-github-artifact
+        path: modules/ec2/ansible-inventory.txt
 
   infra-destroy-job:
     needs: infra-provision-job
@@ -67,14 +74,22 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-southeast-2
+# downloading artifact the one I created above
+    - name: downloading ansible inventory from artifact
+      uses: actions/download-artifact@v5
+      with:
+        name: anjali-github-artifact
+# listing artifact        
+    - name: Display structure of downloaded files    
+      run: ls -R
 
-    # isntalling  
+    # installing  
     - name: installing terraform 
       uses: hashicorp/setup-terraform@v3
 
     - name: destroying it 
       run: | 
-        echo "checking resoruces"
+        echo "checking resources"
         terraform init 
         terraform state list
         terraform destroy --auto-approve
