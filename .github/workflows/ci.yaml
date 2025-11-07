@@ -60,7 +60,7 @@ jobs:
         name: anjali-github-artifact
         path: |
           modules/ec2/ansible-inventory.txt
-          modules/ec3/anjali-key.pem
+          modules/ec2/anjali-key.pem
 
   infra-configure-job:
     needs: infra-provision-job
