@@ -10,7 +10,7 @@ output "my-ec2ID" {
 }
 
 resource "local_file" "my_output_file" {
-  content    = join("\n",aws_instance.example[*].public_ip)
+  content    = "[anjali-roche]\n${join("\n",aws_instance.example[*].public_ip)}"
   filename   = "${path.module}/ansible-inventory.txt"
   depends_on = [aws_instance.example]
 }

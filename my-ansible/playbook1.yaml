@@ -1,6 +1,6 @@
 ---
 - name: defining target group
-  hosts: web-servers
+  hosts: anjali-roche
   # defining variables
   vars:
     x: httpd
