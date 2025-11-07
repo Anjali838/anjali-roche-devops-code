@@ -31,4 +31,4 @@
     service:
       name: "{{ x }}"
       state: started
-      enables: yes
+      enabled: yes
