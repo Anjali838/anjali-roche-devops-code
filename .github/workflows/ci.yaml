@@ -55,7 +55,7 @@ jobs:
         ls modules/ec2
   #creating artifact and uploading ansible inventory file
     - name: uploading ansible inventory to github artifacts
-      uses: action/upload-artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: anjali-github-artifact
         path: modules/ec2/ansible-inventory.txt
