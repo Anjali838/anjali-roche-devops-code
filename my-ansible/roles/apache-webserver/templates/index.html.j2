@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>{{ site_title }}</title>
+    </head>
+    <body style="font-family:sans-serif;">
+        <h1 style="color:green;">{{ site_message }}</h1>
+        <h2>Server Type: Apache HTTPD</h2>
+        <p>Hostname: {{ ansible_hostname }}</p>
+        <p>Operating System: {{ ansible_distribution }} {{ ansible_distribution_version }}</p>
+        <p>Deployed on: {{ ansible_date_time.date }}</p>
+    </body>
+</html>
